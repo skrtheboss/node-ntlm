@@ -6,7 +6,6 @@
     "scripts": {
         "format": "nx format:write",
         "check-formatting": "nx format:check",
-        "release": "lerna version",
         "prepare": "husky install",
         "build": "nx run-many --target=build",
         "lint": "nx run-many --target=lint",

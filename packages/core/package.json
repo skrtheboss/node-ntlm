@@ -23,5 +23,6 @@
     "publishConfig": {
         "access": "public",
         "directory": "../../dist/packages/core"
-    }
+    },
+    "gitHead": "36c42b05a3fea3d2cc3cafc39295866bf40547d6"
 }
