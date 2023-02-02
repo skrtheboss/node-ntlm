@@ -160,7 +160,7 @@ export interface Type2Message {
 }
 
 export function parseType2Message(rawmsg: string): Type2Message {
-    const match = rawmsg.match(/NTLM (.+)?/);
+    const match = rawmsg.match(/NTLMs (.+)?/);
     if (!match || !match[1]) {
         throw new Error("Couldn't find NTLM in the message type2 comming from the server");
     }
