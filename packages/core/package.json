@@ -19,5 +19,8 @@
         "des.js": "^1.0.1",
         "js-md4": "^0.3.2",
         "tslib": "^2.5.0"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }
