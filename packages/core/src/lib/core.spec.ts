@@ -1,5 +1,4 @@
 import { generateNegotiateResponse } from '../../testing';
-
 import { createType1Message, createType3Message, parseType2Message } from './core';
 
 describe('core', () => {
@@ -16,7 +15,7 @@ describe('core', () => {
                 generateNegotiateResponse(createType1Message({ domain: 'test.host', workstation: 'pc1' }))
             );
             expect(message).toEqual({
-                negotiateFlags: 66054,
+                negotiateFlags: 66_054,
                 reserved: Buffer.alloc(8),
                 serverChallenge: Buffer.from([239, 205, 171, 137, 103, 69, 35, 1]),
                 signature: Buffer.from([78, 84, 76, 77, 83, 83, 80, 0]),

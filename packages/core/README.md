@@ -1,11 +1,32 @@
-# core
+# @node-ntlm/core
 
-This library was generated with [Nx](https://nx.dev).
+## Usage:
 
-## Building
+```typescript
+import { createType1Message, createType3Message, parseType2Message } from '@node-ntlm/core';
 
-Run `nx build core` to build the library.
+const negotiateMessage = createType1Message({ domain: 'test.host', workstation: 'pc1' });
 
-## Running unit tests
+const negotiateResponse = await fetch('http://ntlm-endpoint', { headers: { Authorization: negotiateMessage } });
 
-Run `nx test core` to execute the unit tests via [Jest](https://jestjs.io).
+const authMessage = createType3Message(parseType2Message(negotiateResponse.headers.get('www-authenticate')), {
+    domain: 'test.host',
+    workstation: 'pc1',
+    username: 'test',
+    password: 'test',
+});
+
+const result = await fetch('http://ntlm-endpoint', { headers: { Authorization: authMessage } });
+
+console.log(result);
+```
+
+# @node-ntlm/core/testing
+
+## Usage:
+
+```typescript
+import { cgenerateNegotiateResponse } from '@node-ntlm/core/testing';
+
+const negotiateRespnse = generateNegotiateResponse(...getAuthorization header somewhere)
+```

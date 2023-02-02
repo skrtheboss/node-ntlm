@@ -1,7 +1,7 @@
 {
     "root": true,
     "ignorePatterns": ["**/*"],
-    "plugins": ["@nrwl/nx"],
+    "plugins": ["@nrwl/nx", "simple-import-sort", "unicorn"],
     "overrides": [
         {
             "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
@@ -18,7 +18,12 @@
                             }
                         ]
                     }
-                ]
+                ],
+                "simple-import-sort/imports": "error",
+                "simple-import-sort/exports": "error",
+                "unicorn/prefer-number-properties": "error",
+                "unicorn/prefer-node-protocol": "error",
+                "unicorn/numeric-separators-style": "error"
             }
         },
         {
@@ -33,10 +38,17 @@
         },
         {
             "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
+            "extends": ["plugin:jest/recommended"],
             "env": {
                 "jest": true
             },
-            "rules": {}
+            "rules": {
+                "jest/no-commented-out-tests": "error",
+                "jest/no-conditional-expect": "warn",
+                "jest/no-disabled-tests": "error",
+                "jest/no-done-callback": "warn",
+                "jest/prefer-each": "warn"
+            }
         }
     ]
 }

@@ -1,7 +1,20 @@
 {
   "name": "@node-ntlm/core",
   "version": "0.0.1",
+  "license": "MIT",
+  "description": "NTLM node utility function",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/skrtheboss/node-ntlm.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/skrtheboss/node-ntlm/issues"
+  },
   "type": "commonjs",
+  "engines": {
+    "node": ">=18.13.0"
+  },
   "dependencies": {
     "des.js": "^1.0.1",
     "js-md4": "^0.3.2",

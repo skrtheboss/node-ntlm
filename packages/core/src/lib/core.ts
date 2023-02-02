@@ -1,43 +1,43 @@
 import { createHash, createHmac } from 'node:crypto';
 
+import { DES, Des } from 'des.js';
 import { create as createMd4 } from 'js-md4';
-import { Des, DES } from 'des.js';
 
 import { insertZerosEvery7Bits } from './utils';
 
 const NTLMFlag = {
-    NegotiateUnicode: 0x00000001,
-    NegotiateOEM: 0x00000002,
-    RequestTarget: 0x00000004,
-    Unknown9: 0x00000008,
-    NegotiateSign: 0x00000010,
-    NegotiateSeal: 0x00000020,
-    NegotiateDatagram: 0x00000040,
-    NegotiateLanManagerKey: 0x00000080,
-    Unknown8: 0x00000100,
-    NegotiateNTLM: 0x00000200,
-    NegotiateNTOnly: 0x00000400,
-    Anonymous: 0x00000800,
-    NegotiateOemDomainSupplied: 0x00001000,
-    NegotiateOemWorkstationSupplied: 0x00002000,
-    Unknown6: 0x00004000,
-    NegotiateAlwaysSign: 0x00008000,
-    TargetTypeDomain: 0x00010000,
-    TargetTypeServer: 0x00020000,
-    TargetTypeShare: 0x00040000,
-    NegotiateExtendedSecurity: 0x00080000,
-    NegotiateIdentify: 0x00100000,
-    Unknown5: 0x00200000,
-    RequestNonNTSessionKey: 0x00400000,
-    NegotiateTargetInfo: 0x00800000,
-    Unknown4: 0x01000000,
-    NegotiateVersion: 0x02000000,
-    Unknown3: 0x04000000,
-    Unknown2: 0x08000000,
-    Unknown1: 0x10000000,
-    Negotiate128: 0x20000000,
-    NegotiateKeyExchange: 0x40000000,
-    Negotiate56: 0x80000000,
+    NegotiateUnicode: 0x00_00_00_01,
+    NegotiateOEM: 0x00_00_00_02,
+    RequestTarget: 0x00_00_00_04,
+    Unknown9: 0x00_00_00_08,
+    NegotiateSign: 0x00_00_00_10,
+    NegotiateSeal: 0x00_00_00_20,
+    NegotiateDatagram: 0x00_00_00_40,
+    NegotiateLanManagerKey: 0x00_00_00_80,
+    Unknown8: 0x00_00_01_00,
+    NegotiateNTLM: 0x00_00_02_00,
+    NegotiateNTOnly: 0x00_00_04_00,
+    Anonymous: 0x00_00_08_00,
+    NegotiateOemDomainSupplied: 0x00_00_10_00,
+    NegotiateOemWorkstationSupplied: 0x00_00_20_00,
+    Unknown6: 0x00_00_40_00,
+    NegotiateAlwaysSign: 0x00_00_80_00,
+    TargetTypeDomain: 0x00_01_00_00,
+    TargetTypeServer: 0x00_02_00_00,
+    TargetTypeShare: 0x00_04_00_00,
+    NegotiateExtendedSecurity: 0x00_08_00_00,
+    NegotiateIdentify: 0x00_10_00_00,
+    Unknown5: 0x00_20_00_00,
+    RequestNonNTSessionKey: 0x00_40_00_00,
+    NegotiateTargetInfo: 0x00_80_00_00,
+    Unknown4: 0x01_00_00_00,
+    NegotiateVersion: 0x02_00_00_00,
+    Unknown3: 0x04_00_00_00,
+    Unknown2: 0x08_00_00_00,
+    Unknown1: 0x10_00_00_00,
+    Negotiate128: 0x20_00_00_00,
+    NegotiateKeyExchange: 0x40_00_00_00,
+    Negotiate56: 0x80_00_00_00,
 } as const;
 
 const NTLMTypeFlags = {
@@ -129,12 +129,12 @@ export function createType1Message(options: Type1MessageOptions): string {
     return `NTLM ${buf.toString('base64')}`;
 }
 
-interface Type1MessageOptions {
+export interface Type1MessageOptions {
     readonly domain: string;
     readonly workstation: string;
 }
 
-interface Type3MessageOptions {
+export interface Type3MessageOptions {
     readonly domain: string;
     readonly workstation: string;
     readonly username: string;
@@ -143,7 +143,7 @@ interface Type3MessageOptions {
     readonly nt_password?: Buffer;
 }
 
-interface Type2Message {
+export interface Type2Message {
     signature: Buffer;
     type: number;
     targetNameLen: number;
@@ -239,14 +239,8 @@ export function createType3Message(msg2: Type2Message, options: Type3MessageOpti
         encryptedRandomSessionKeyBytes = Buffer.from(encryptedRandomSessionKey, 'ascii');
     }
 
-    let lmChallengeResponse = calc_resp(
-        lm_password != null ? lm_password : createLMHashedPasswordV1(password),
-        nonce
-    );
-    let ntChallengeResponse = calc_resp(
-        nt_password != null ? nt_password : createNTHashedPasswordV1(password),
-        nonce
-    );
+    let lmChallengeResponse = calc_resp(lm_password != null ? lm_password : createLMHashedPasswordV1(password), nonce);
+    let ntChallengeResponse = calc_resp(nt_password != null ? nt_password : createNTHashedPasswordV1(password), nonce);
 
     if (isNegotiateExtendedSecurity) {
         /*
@@ -471,7 +465,7 @@ function calc_ntlmv2_resp(
 
     // 11644473600000 = diff between 1970 and 1601
     const now = Date.now();
-    const timestamp = (BigInt(now) + BigInt(11644473600000)) * BigInt(10000); // we need BigInt to be able to write it to a buffer
+    const timestamp = (BigInt(now) + BigInt(11_644_473_600_000)) * BigInt(10_000); // we need BigInt to be able to write it to a buffer
     const timestampBuffer = Buffer.alloc(8);
     timestampBuffer.writeBigUInt64LE(timestamp);
 
