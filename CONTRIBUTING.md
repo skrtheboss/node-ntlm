@@ -21,13 +21,13 @@ Source code is included in the top-level folders listed below.
 After cloning the project to your machine, to install the dependencies, run:
 
 ```bash
-pnpm install
+yarn install
 ```
 
 To build all the packages, run:
 
 ```bash
-pnpm build
+yarn build
 ```
 
 ### Running Unit Tests
