@@ -7,6 +7,9 @@
             "conventionalCommits": true,
             "message": "docs: release notes for the %s release",
             "allowBranch": ["main", "release/*"]
+        },
+        "publish": {
+            "graphType": "all"
         }
     }
 }
