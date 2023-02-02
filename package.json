@@ -13,7 +13,8 @@
         "test": "nx run-many --target=build",
         "cleanup-lockfile": "yarn-deduplicate --strategy fewer",
         "check-lockfile": "yarn-deduplicate --strategy fewer -l -f",
-        "publish": "nx run-many --target=publish"
+        "publish": "nx run-many --target=publish",
+        "prepack": "nx run-many --target=build"
     },
     "private": true,
     "engines": {
