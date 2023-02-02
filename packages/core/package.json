@@ -13,7 +13,7 @@
     },
     "type": "commonjs",
     "engines": {
-        "node": ">=18.13.0"
+        "node": ">=16.19.0"
     },
     "dependencies": {
         "des.js": "^1.0.1",
