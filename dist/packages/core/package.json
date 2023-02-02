@@ -1,0 +1,12 @@
+{
+  "name": "@node-ntlm/core",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "dependencies": {
+    "des.js": "^1.0.1",
+    "js-md4": "^0.3.2",
+    "tslib": "^2.5.0"
+  },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts"
+}
