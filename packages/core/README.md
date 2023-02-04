@@ -26,7 +26,7 @@ console.log(result);
 ## Usage:
 
 ```typescript
-import { cgenerateNegotiateResponse } from '@node-ntlm/core/testing';
+import { generateNegotiateResponse } from '@node-ntlm/core/testing';
 
 const negotiateRespnse = generateNegotiateResponse(...getAuthorization header somewhere)
 ```
