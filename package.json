@@ -11,7 +11,7 @@
         "lint": "nx run-many --target=lint",
         "test": "nx run-many --target=build",
         "cleanup-lockfile": "yarn-deduplicate --strategy fewer",
-        "preversion": "yarn run-many --target=check-dependencies",
+        "preversion": "yarn nx run-many --target=check-dependencies",
         "check-lockfile": "yarn-deduplicate --strategy fewer -l -f",
         "publish": "nx run-many --target=publish"
     },
