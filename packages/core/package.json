@@ -11,6 +11,15 @@
     "bugs": {
         "url": "https://github.com/skrtheboss/node-ntlm/issues"
     },
+    "keywords": [
+        "ntlm",
+        "md4",
+        "des",
+        "node18",
+        "node16",
+        "node",
+        "iis"
+    ],
     "type": "commonjs",
     "engines": {
         "node": ">=16.19.0"
@@ -19,10 +28,6 @@
         "des.js": "^1.0.1",
         "js-md4": "^0.3.2",
         "tslib": "^2.5.0"
-    },
-    "publishConfig": {
-        "access": "public",
-        "directory": "../../dist/packages/core"
     },
     "gitHead": "36c42b05a3fea3d2cc3cafc39295866bf40547d6"
 }
