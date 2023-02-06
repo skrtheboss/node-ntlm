@@ -13,7 +13,8 @@
         "cleanup-lockfile": "yarn-deduplicate --strategy fewer",
         "check-lockfile": "yarn-deduplicate --strategy fewer -l -f",
         "publish": "nx run-many --target=publish",
-        "prepack": "nx run-many --target=build"
+        "replace-placeholder-versions": "node tools/replace-placeholders.mjs",
+        "prepack": "nx run-many --target=build && yarn replace-placeholder-versions"
     },
     "private": true,
     "engines": {
