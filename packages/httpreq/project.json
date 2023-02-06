@@ -1,18 +1,18 @@
 {
-    "name": "core",
+    "name": "httpreq",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
-    "sourceRoot": "packages/core/src",
+    "sourceRoot": "packages/httpreq/src",
     "projectType": "library",
     "targets": {
         "build": {
             "executor": "@nrwl/js:tsc",
             "outputs": ["{options.outputPath}"],
             "options": {
-                "outputPath": "dist/packages/core",
-                "main": "packages/core/src/index.ts",
-                "tsConfig": "packages/core/tsconfig.lib.json",
+                "outputPath": "dist/packages/httpreq",
+                "main": "packages/httpreq/src/index.ts",
+                "tsConfig": "packages/httpreq/tsconfig.lib.json",
                 "assets": [
-                    "packages/core/*.md",
+                    "packages/httpreq/*.md",
                     {
                         "input": "",
                         "glob": "LICENSE",
@@ -26,14 +26,14 @@
             "executor": "@nrwl/linter:eslint",
             "outputs": ["{options.outputFile}"],
             "options": {
-                "lintFilePatterns": ["packages/core/**/*.ts"]
+                "lintFilePatterns": ["packages/httpreq/**/*.ts"]
             }
         },
         "test": {
             "executor": "@nrwl/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
             "options": {
-                "jestConfig": "packages/core/jest.config.ts",
+                "jestConfig": "packages/httpreq/jest.config.ts",
                 "passWithNoTests": true
             },
             "configurations": {
@@ -46,20 +46,20 @@
         "check-dependencies": {
             "executor": "nx:run-commands",
             "options": {
-                "cwd": "./dist/packages/core",
+                "cwd": "./dist/packages/httpreq",
                 "command": "dependency-check package.json --missing"
             }
         },
         "replace-version-placeholder": {
             "executor": "nx:run-commands",
             "options": {
-                "command": "node tools/replace-placeholders.mjs core"
+                "command": "node tools/replace-placeholders.mjs httpreq"
             }
         },
         "publish-package": {
             "executor": "nx:run-commands",
             "options": {
-                "command": "npm publish ./dist/packages/core"
+                "command": "npm publish ./dist/packages/httpreq"
             }
         }
     },

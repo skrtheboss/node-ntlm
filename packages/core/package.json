@@ -29,9 +29,5 @@
         "js-md4": "^0.3.2",
         "tslib": "^2.5.0"
     },
-    "publishConfig": {
-        "access": "public",
-        "directory": "../../dist/packages/core"
-    },
     "gitHead": "36c42b05a3fea3d2cc3cafc39295866bf40547d6"
 }

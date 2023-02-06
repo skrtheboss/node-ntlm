@@ -16,7 +16,9 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "@node-ntlm/core": ["packages/core/src/index.ts"]
+            "@node-ntlm/core": ["packages/core/src/index.ts"],
+            "@node-ntlm/core/testing": ["packages/core/testing/index.ts"],
+            "@node-ntlm/http": ["packages/http/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp"]

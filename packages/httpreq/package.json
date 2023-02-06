@@ -1,0 +1,35 @@
+{
+    "name": "@node-ntlm/httpreq",
+    "version": "0.1.5",
+    "license": "MIT",
+    "description": "NTLM httpreq node utility function",
+    "repository": {
+        "type": "git",
+        "url": "httpreqs://github.com/skrtheboss/node-ntlm.git",
+        "directory": "packages/httpreq"
+    },
+    "bugs": {
+        "url": "httpreqs://github.com/skrtheboss/node-ntlm/issues"
+    },
+    "keywords": [
+        "ntlm",
+        "md4",
+        "des",
+        "node18",
+        "node16",
+        "node",
+        "iis",
+        "http",
+        "https",
+        "httpreq"
+    ],
+    "type": "commonjs",
+    "engines": {
+        "node": ">=16.19.0"
+    },
+    "dependencies": {
+        "@node-ntlm/core": "0.0.0-PLACEHOLDER",
+        "httpreq": "^0.5.2",
+        "tslib": "^2.5.0"
+    }
+}
