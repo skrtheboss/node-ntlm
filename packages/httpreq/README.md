@@ -47,7 +47,7 @@ You can install **@node-ntlm/httpreq** using the Node Package Manager (npm):
 ## How to use
 
 ```typescript
-import { get } from ''@node-ntlm/httpreq';
+import { get } from '@node-ntlm/httpreq';
 
 const res = await get({
     url: 'https://someurl.com',

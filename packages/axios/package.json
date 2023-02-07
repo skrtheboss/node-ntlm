@@ -1,12 +1,12 @@
 {
-    "name": "@node-ntlm/httpreq",
+    "name": "@node-ntlm/axios",
     "version": "0.2.3",
     "license": "MIT",
-    "description": "NTLM httpreq node utility function",
+    "description": "NTLM axios node utility function",
     "repository": {
         "type": "git",
         "url": "https://github.com/skrtheboss/node-ntlm.git",
-        "directory": "packages/httpreq"
+        "directory": "packages/axios"
     },
     "bugs": {
         "url": "https://github.com/skrtheboss/node-ntlm/issues"
@@ -21,7 +21,7 @@
         "iis",
         "http",
         "https",
-        "httpreq",
+        "axios",
         "authentication",
         "windows authentication",
         "windows",
@@ -33,7 +33,8 @@
     },
     "dependencies": {
         "@node-ntlm/core": "0.0.0-PLACEHOLDER",
-        "httpreq": "^0.5.2",
+        "axios": "^1.3.2",
+        "dev-null": "^0.1.1",
         "tslib": "^2.5.0"
     }
 }

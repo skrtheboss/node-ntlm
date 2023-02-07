@@ -18,7 +18,11 @@
         "node18",
         "node16",
         "node",
-        "iis"
+        "iis",
+        "authentication",
+        "windows authentication",
+        "windows",
+        "auth"
     ],
     "type": "commonjs",
     "engines": {
