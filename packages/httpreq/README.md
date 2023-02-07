@@ -1,5 +1,39 @@
 # @node-ntlm/httpreq
 
+<p align="center">
+  <a href="https://nodejs.org/">
+    <img alt="NodeJs Support" src="https://img.shields.io/node/v/@node-ntlm/httpreq?style=flat-square&logo=Node.js">
+  </a>
+  <a href="https://www.npmjs.com/package/@node-ntlm/httpreq">
+    <img alt="weekly downloads from npm" src="https://img.shields.io/npm/dw/@node-ntlm/httpreq.svg?style=flat-square">
+  </a>
+  <a href="https://renovatebot.com/">
+    <img alt="Renovate Bot" src="https://img.shields.io/badge/renovate-enabled-brightgreen.svg?style=flat-square">
+  </a>
+  <a href="https://snyk.io/advisor/npm-package/@node-ntlm/httpreq">
+    <img alt="SNYK Report" src="https://img.shields.io/snyk/vulnerabilities/npm/@node-ntlm/httpreq?style=flat-square">
+  </a>
+  <a href="https://www.npmjs.org/package/@node-ntlm/httpreq">
+    <img alt="npm version" src="http://img.shields.io/npm/v/@node-ntlm/httpreq.svg?style=flat-square&logo=npm">
+  </a>
+  <br/>
+  <a href="https://bundlephobia.com/result?p=@node-ntlm/httpreq">
+    <img alt="Minified size" src="https://img.shields.io/bundlephobia/min/@node-ntlm/httpreq?style=flat-square">
+  </a>
+  <a href="https://bundlephobia.com/result?p=@node-ntlm/httpreqe">
+    <img alt="Minified-Zipped size" src="https://img.shields.io/bundlephobia/minzip/@node-ntlm/httpreq?style=flat-square">
+  </a>
+  <a href="https://github.com/semantic-release/semantic-release">
+    <img alt="Semantic Release" src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-blue.svg?style=flat-square">
+  </a>
+  <a href="https://github.com/prettier/prettier">
+    <img alt="code style: prettier" src="https://img.shields.io/badge/code%20style-prettier-blue?style=flat-square&logo=Prettier">
+  </a>
+  <a href="https://github.com/skrtheboss/node-ntlm/blob/master/LICENSE">
+    <img alt="Mit License" src="https://img.shields.io/npm/l/@node-ntlm/httpreq?color=blue&style=flat-square">
+  </a>
+</p>
+
 **@node-ntlm/httpreq** is a Node.js library to do HTTP NTLM authentication
 
 It's heavily inspired from [httpntlm](https://github.com/SamDecrock/node-http-ntlm) written in typescript, promise based and with nodejs 18 support.
@@ -33,7 +67,7 @@ It supports **http** and **https**.
 
 ```typescript
 import { get } from '@node-ntlm/httpreq';
-import { createLMHashedPasswordV1, createNTHashedPasswordV1 } from '@node-ntlm/core';
+import { createLMHashedPasswordV1, createNTHashedPasswordV1 } from '@node-ntlm/httpreq';
 
 let lm = createLMHashedPasswordV1('Azx123456');
 let nt = createNTHashedPasswordV1('Azx123456');
