@@ -5,11 +5,11 @@
     "description": "NTLM httpreq node utility function",
     "repository": {
         "type": "git",
-        "url": "httpreqs://github.com/skrtheboss/node-ntlm.git",
+        "url": "https://github.com/skrtheboss/node-ntlm.git",
         "directory": "packages/httpreq"
     },
     "bugs": {
-        "url": "httpreqs://github.com/skrtheboss/node-ntlm/issues"
+        "url": "https://github.com/skrtheboss/node-ntlm/issues"
     },
     "keywords": [
         "ntlm",
