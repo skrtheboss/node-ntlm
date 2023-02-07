@@ -1,0 +1,68 @@
+{
+    "name": "axios",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "packages/axios/src",
+    "projectType": "library",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/packages/axios",
+                "main": "packages/axios/src/index.ts",
+                "tsConfig": "packages/axios/tsconfig.lib.json",
+                "assets": [
+                    "packages/axios/*.md",
+                    {
+                        "input": "",
+                        "glob": "LICENSE",
+                        "output": "/"
+                    }
+                ],
+                "updateBuildableProjectDepsInPackageJson": false
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["packages/axios/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "packages/axios/jest.config.ts",
+                "passWithNoTests": true
+            },
+            "configurations": {
+                "ci": {
+                    "ci": true,
+                    "codeCoverage": true
+                }
+            }
+        },
+        "check-dependencies": {
+            "executor": "nx:run-commands",
+            "options": {
+                "cwd": "./dist/packages/axios",
+                "command": "dependency-check package.json --missing"
+            }
+        },
+        "replace-version-placeholder": {
+            "executor": "nx:run-commands",
+            "outputs": ["dist/packages/axios"],
+            "options": {
+                "command": "node tools/replace-placeholders.mjs axios"
+            }
+        },
+        "publish-package": {
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "npm publish ./dist/packages/axios"
+            }
+        }
+    },
+    "tags": []
+}

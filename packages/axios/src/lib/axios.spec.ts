@@ -1,9 +1,9 @@
 import { generateNegotiateResponse } from '@node-ntlm/core/testing';
 import nock from 'nock';
 
-import { get } from './httpreq';
+import { NtlmClient, NtlmCredentials } from './axios';
 
-describe('httpreq', () => {
+describe('axios', () => {
     const baseUrl = 'http://test-service.url';
 
     const testService = nock(baseUrl);
@@ -17,6 +17,8 @@ describe('httpreq', () => {
     });
 
     it('should perform negotiation', async () => {
+        testService.get('/api').reply(401, undefined, { 'www-authenticate': 'NTLM invalid' });
+
         testService
             .get('/api', undefined, { reqheaders: { authorization: /^NTLM / } })
             .reply(function (res, body, callback) {
@@ -35,14 +37,20 @@ describe('httpreq', () => {
             )
             .reply(200, { test: 5 }, { 'Content-Type': 'application/json' });
 
-        const res = await get({
-            url: `${baseUrl}/api`,
+        const credentials: NtlmCredentials = {
             username: 'username',
             password: 'password',
             domain: 'domain',
             workstation: 'workstation',
+        };
+
+        const client = NtlmClient(credentials);
+
+        const res = await client<{ test: 5 }>({
+            url: `${baseUrl}/api`,
+            method: 'get',
         });
 
-        expect(res).toHaveProperty('body', '{"test":5}');
+        expect(res.data).toEqual({ test: 5 });
     });
 });
