@@ -52,6 +52,7 @@
         },
         "replace-version-placeholder": {
             "executor": "nx:run-commands",
+            "outputs": ["dist/packages/httpreq"],
             "options": {
                 "command": "node tools/replace-placeholders.mjs httpreq"
             }
