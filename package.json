@@ -13,7 +13,8 @@
         "cleanup-lockfile": "yarn-deduplicate --strategy fewer",
         "preversion": "yarn nx run-many --target=check-dependencies",
         "check-lockfile": "yarn-deduplicate --strategy fewer -l -f",
-        "publish-packages": "nx run-many --target=publish-package"
+        "publish-packages": "nx run-many --target=publish-package",
+        "version": "lerna version --force-publish"
     },
     "private": true,
     "engines": {
