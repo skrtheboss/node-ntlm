@@ -1,6 +1,6 @@
 {
     "name": "@node-ntlm/httpreq",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "license": "MIT",
     "description": "NTLM httpreq node utility function",
     "repository": {
