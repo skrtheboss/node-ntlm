@@ -1,6 +1,6 @@
 {
     "name": "@node-ntlm/axios",
-    "version": "0.3.1",
+    "version": "0.3.2",
     "license": "MIT",
     "description": "NTLM axios node utility function",
     "repository": {

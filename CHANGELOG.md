@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2](https://github.com/skrtheboss/node-ntlm/compare/v0.3.1...v0.3.2) (2023-02-08)
+
+### Bug Fixes
+
+-   **core:** fix createType1Message not working properly ([#19](https://github.com/skrtheboss/node-ntlm/issues/19)) ([0ee88db](https://github.com/skrtheboss/node-ntlm/commit/0ee88dbd17ff777d0f24c62d1002c2b948d65161))
+
 ## [0.3.1](https://github.com/skrtheboss/node-ntlm/compare/v0.3.0...v0.3.1) (2023-02-08)
 
 ### Bug Fixes
