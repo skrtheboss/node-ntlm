@@ -79,11 +79,11 @@ export function createType1Message(options: Type1MessageOptions): string {
     const buf = Buffer.alloc(BODY_LENGTH + domain.length + workstation.length);
 
     // protocol
-    pos = buf.write(protocol, pos, protocol.length);
+    pos += buf.write(protocol, pos, protocol.length);
     // type 1
-    buf.writeUInt32LE(1, pos);
+    pos = buf.writeUInt32LE(1, pos);
     // TYPE1 flag
-    buf.writeUInt32LE(type1flags, pos);
+    pos = buf.writeUInt32LE(type1flags, pos);
 
     // domain length
     pos = buf.writeUInt16LE(domain.length, pos);
@@ -118,7 +118,7 @@ export function createType1Message(options: Type1MessageOptions): string {
     // length checks is to fix issue #46 and possibly #57
     if (workstation.length != 0) {
         // workstation string
-        pos = buf.write(workstation, pos, workstation.length, 'ascii');
+        pos += buf.write(workstation, pos, workstation.length, 'ascii');
     }
 
     if (domain.length != 0) {

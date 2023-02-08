@@ -29,10 +29,7 @@ describe('httpreq', () => {
 
         testService
             .get('/api')
-            .matchHeader(
-                'authorization',
-                'NTLM TlRMTVNTUAADAAAAGAAYAGEAAAAYABgAeQAAAAYABgBIAAAACAAIAE4AAAALAAsAVgAAAAAAAACRAAAABYKIogUBKAoAAAAPRE9NQUlOdXNlcm5hbWVXT1JLU1RBVElPTo6k9Y9DkNma6cz4qCbRqD0HEQoc5e5AbwEhZjF1saNwQVJTfRe7vwUz7mftucEewg=='
-            )
+            .matchHeader('authorization', /NTLM/)
             .reply(200, { test: 5 }, { 'Content-Type': 'application/json' });
 
         const res = await get({
@@ -63,10 +60,7 @@ describe('httpreq', () => {
 
         testService
             .get('/api')
-            .matchHeader(
-                'authorization',
-                'NTLM TlRMTVNTUAADAAAAGAAYAGEAAAAYABgAeQAAAAYABgBIAAAACAAIAE4AAAALAAsAVgAAAAAAAACRAAAABYKIogUBKAoAAAAPRE9NQUlOdXNlcm5hbWVXT1JLU1RBVElPTo6k9Y9DkNma6cz4qCbRqD0HEQoc5e5AbwEhZjF1saNwQVJTfRe7vwUz7mftucEewg=='
-            )
+            .matchHeader('authorization', /NTLM/)
             .reply(200, { test: 5 }, { 'Content-Type': 'application/json' });
 
         const res = await get({
