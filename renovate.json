@@ -15,7 +15,7 @@
     "commitMessageExtra": "from {{currentVersion}} to {{#if isMajor}}v{{{newMajor}}}{{else}}{{#if isSingleVersion}}v{{{toVersion}}}{{else}}{{{newValue}}}{{/if}}{{/if}}",
     "commitMessageTopic": "{{depName}}",
     "dependencyDashboard": true,
-    "postUpdateOptions": "yarnDedupeFewer",
+    "postUpdateOptions": ["yarnDedupeFewer"],
     "ignorePaths": ["packages/**"],
     "internalChecksFilter": "strict",
     "labels": ["dependencies"],
