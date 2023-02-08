@@ -12,7 +12,7 @@ describe('core', () => {
     describe('createType1Message', () => {
         it('should work', () => {
             expect(createType1Message({ domain: 'test.host', workstation: 'pc1' })).toMatchInlineSnapshot(
-                `"NTLM TlRMVEVTVC5IT1NUKwAAAAMAAwAoAAAABQEoCgAAAA9QQzEAAAAAAAAAAAAAAAAAAAAAAA=="`
+                `"NTLM TlRMTVNTUAABAAAAB7IIogkACQArAAAAAwADACgAAAAFASgKAAAAD1BDMVRFU1QuSE9TVA=="`
             );
         });
     });
@@ -23,14 +23,18 @@ describe('core', () => {
                 generateNegotiateResponse(createType1Message({ domain: 'test.host', workstation: 'pc1' }))
             );
             expect(message).toEqual({
-                negotiateFlags: 66_054,
+                negotiateFlags: 8_978_438,
                 reserved: Buffer.alloc(8),
                 serverChallenge: Buffer.from([239, 205, 171, 137, 103, 69, 35, 1]),
                 signature: Buffer.from([78, 84, 76, 77, 83, 83, 80, 0]),
+                targetInfo: Buffer.concat([Buffer.from([0, 2, 10, 0]), Buffer.from('ALPHA', 'ucs2'), Buffer.alloc(4)]),
+                targetInfoLen: 18,
+                targetInfoMaxLen: 18,
+                targetInfoOffset: 53,
                 targetName: Buffer.from(Buffer.from('ALPHA').toString('ascii')),
                 targetNameLen: 5,
                 targetNameMaxLen: 5,
-                targetNameOffset: 40,
+                targetNameOffset: 48,
                 type: 2,
             });
         });
@@ -48,8 +52,8 @@ describe('core', () => {
                     username: 'test',
                     password: 'test',
                 })
-            ).toMatchInlineSnapshot(
-                `"NTLM TlRMTVNTUAADAAAAGAAYAFgAAAAYABgAcAAAAAkACQBIAAAABAAEAFEAAAADAAMAVQAAAAAAAACIAAAABYKIogUBKAoAAAAPVEVTVC5IT1NUdGVzdFBDMcigt5silHOnTNsEhCwQrAKlSxrozzOQDVdKrEd/D9Mr9/X2g89PboBNxUzdwmsVWA=="`
+            ).toMatch(
+                /NTLM TlRMTVNTUAADAAAAGAAYAFgAAABCAEIAcAAAAAkACQBIAAAABAAEAFEAAAADAAMAVQAAAAAAAACyAAAABYKIogUBKAoAAAAPVEVTVC5IT1NUdGVzdFBDM.+AAAAAAAIKAEEATABQAEgAQQAAAAAAAAAAAA==/
             );
         });
     });
@@ -92,7 +96,7 @@ describe('core', () => {
                     method: 'GET',
                     headers: {
                         authorization:
-                            'NTLM TlRMTVNTUAADAAAAGAAYAFgAAAAYABgAcAAAAAkACQBIAAAABAAEAFEAAAADAAMAVQAAAAAAAACIAAAABYKIogUBKAoAAAAPVEVTVC5IT1NUdGVzdFBDMcigt5silHOnTNsEhCwQrAKlSxrozzOQDVdKrEd/D9Mr9/X2g89PboBNxUzdwmsVWA==',
+                            /NTLM TlRMTVNTUAADAAAAGAAYAFgAAABCAEIAcAAAAAkACQBIAAAABAAEAFEAAAADAAMAVQAAAAAAAACyAAAABYKIogUBKAoAAAAPVEVTVC5IT1NUdGVzdFBDM.+AAAAAAAIKAEEATABQAEgAQQAAAAAAAAAAAA==/,
                     },
                 })
                 .reply(200, { test: 5 }, { headers: { 'Content-Type': 'application/json' } });
