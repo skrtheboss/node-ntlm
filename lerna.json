@@ -1,11 +1,15 @@
 {
     "version": "0.3.2",
+    "lernaClient": "yarn",
     "packages": ["packages/*"],
     "command": {
         "version": {
             "conventionalCommits": true,
             "message": "docs: release notes for the %s release",
             "allowBranch": ["main", "release/*"]
+        },
+        "bootstrap": {
+            "ignore": ["@node-ntlm/{axios,httpreq}"]
         }
     }
 }
