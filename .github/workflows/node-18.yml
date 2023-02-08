@@ -1,0 +1,76 @@
+name: CI Node 18
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+
+jobs:
+    main:
+        name: Nx Cloud - Node 18 Job
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: ${{ github.workspace }}
+                # Specify shell to help normalize across different operating systems
+                shell: bash
+
+        steps:
+            - uses: actions/checkout@v3
+              name: Checkout [Pull Request]
+              if: ${{ github.event_name == 'pull_request' }}
+              with:
+                  # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
+                  ref: ${{ github.event.pull_request.head.sha }}
+                  # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+                  fetch-depth: 0
+
+            - uses: actions/checkout@v3
+              name: Checkout [Default Branch]
+              if: ${{ github.event_name != 'pull_request' }}
+              with:
+                  # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+                  fetch-depth: 0
+
+            - name: Derive appropriate SHAs for base and head for `nx affected` commands
+              uses: nrwl/nx-set-shas@v3
+              with:
+                  main-branch-name: main
+
+            # Set node/npm/yarn versions using volta, with optional overrides provided by the consumer
+            - uses: volta-cli/action@v4
+              with:
+                  yarn-version: "1.22.19"
+                  node-version: "18.14.0"
+
+            - name: Print node/npm/yarn versions
+              id: versions
+              run: |
+                  node_ver=$( node --version )
+                  yarn_ver=$( yarn --version || true )
+                  echo "Node: ${node_ver:1}"
+                  echo "NPM: $( npm --version )"
+                  echo "Yarn: $yarn_ver";
+                  echo "node_version=${node_ver:1}" >> $GITHUB_OUTPUT
+                  echo "yarn_version=${yarn_ver}" >> $GITHUB_OUTPUT
+
+            - name: Get yarn cache directory path [yarn 1.x]
+              id: yarn-cache-dir-path
+              run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+            - name: Use the node_modules cache if available [yarn 1.x]
+              uses: actions/cache@v3
+              with:
+                  path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+                  key: ${{ runner.os }}-node-${{ steps.versions.outputs.node_version }}-yarn-${{ hashFiles('**/yarn.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-node-${{ steps.versions.outputs.node_version }}-yarn-
+
+            - name: Install dependencies
+              run: yarn install --frozen-lockfile
+
+            - name: Rune tests
+              run: yarn nx-cloud record -- yarn nx affected --target=test --parallel=3 --ci --code-coverage
+
+

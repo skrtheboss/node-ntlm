@@ -13,7 +13,8 @@
                     "replace-version-placeholder",
                     "check-dependencies"
                 ],
-                "accessToken": "NDU1MmJmMjAtZDE3YS00YWNmLWJiY2MtOTNjNGE4ZTg3MjQwfHJlYWQtd3JpdGU="
+                "accessToken": "NDU1MmJmMjAtZDE3YS00YWNmLWJiY2MtOTNjNGE4ZTg3MjQwfHJlYWQtd3JpdGU=",
+                "runtimeCacheInputs": ["node -v"]
             }
         }
     },
