@@ -47,7 +47,12 @@ You can install **@node-ntlm/core** using the Node Package Manager (npm):
 ## How to use
 
 ```typescript
-import { createType1Message, createType3Message, parseType2Message } from '@node-ntlm/core';
+import {
+    createType1Message,
+    createType3Message,
+    extractNtlmMessageFromAuthenticateHeader,
+    parseType2Message,
+} from '@node-ntlm/core';
 import { fetch } from 'undici';
 
 const negotiateMessage = createType1Message({ domain: 'test.host', workstation: 'pc1' });
@@ -57,7 +62,7 @@ const negotiateResponse = await fetch('http://test-service.url/api', {
     keepalive: true,
 });
 
-const type2Message = negotiateResponse.headers.get('www-authenticate');
+const type2Message = extractNtlmMessageFromAuthenticateHeader(negotiateResponse.headers.get('www-authenticate'));
 
 if (!type2Message) {
     throw new Error('Could not find type 2 message on response headers!');

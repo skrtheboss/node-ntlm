@@ -3,7 +3,12 @@ import * as https from 'node:https';
 import { parse } from 'node:url';
 import { promisify } from 'node:util';
 
-import { createType1Message, createType3Message, parseType2Message } from '@node-ntlm/core';
+import {
+    createType1Message,
+    createType3Message,
+    extractNtlmMessageFromAuthenticateHeader,
+    parseType2Message,
+} from '@node-ntlm/core';
 import httpreq from 'httpreq';
 
 declare interface HttpReqOptions {
@@ -94,12 +99,14 @@ export async function method<T extends Result>(
             return method(stringMethod, { ...options, url: res.headers.location });
         }
 
-        if (!res.headers['www-authenticate']) {
+        const ntlmMessage = extractNtlmMessageFromAuthenticateHeader(res.headers['www-authenticate']);
+
+        if (!ntlmMessage) {
             throw new Error('www-authenticate not found on response of second request');
         }
 
         // parse type2 message from server:
-        const type2msg = parseType2Message(res.headers['www-authenticate']);
+        const type2msg = parseType2Message(ntlmMessage);
 
         // create type3 message:
         const type3msg = createType3Message(type2msg, {

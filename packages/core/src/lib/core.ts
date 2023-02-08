@@ -159,9 +159,23 @@ export interface Type2Message {
     targetInfo?: Buffer;
 }
 
+export function extractNtlmMessageFromAuthenticateHeader(
+    authenticateHeader: string | undefined | null
+): string | undefined {
+    // The header may look like this: `Negotiate, NTLM, Basic realm="itsahiddenrealm.example.net"`
+    // so extract the 'NTLM' part first
+    return (
+        authenticateHeader
+            ?.split(',')
+            .find(part => part.match(/ *NTLM/))
+            ?.trim() ?? undefined
+    );
+}
+
 export function parseType2Message(rawmsg: string): Type2Message {
-    const match = rawmsg.match(/NTLM (.+)?/);
-    if (!match || !match[1]) {
+    const match = rawmsg.match(/^NTLM\s+(.+?)(,|\s+|$)/);
+
+    if (!match?.[1]) {
         throw new Error("Couldn't find NTLM in the message type2 comming from the server");
     }
 

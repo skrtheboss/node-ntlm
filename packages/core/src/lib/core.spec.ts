@@ -1,7 +1,12 @@
 import { fetch, getGlobalDispatcher, MockAgent, setGlobalDispatcher } from 'undici';
 
 import { generateNegotiateResponse } from '../../testing';
-import { createType1Message, createType3Message, parseType2Message } from './core';
+import {
+    createType1Message,
+    createType3Message,
+    extractNtlmMessageFromAuthenticateHeader,
+    parseType2Message,
+} from './core';
 
 describe('core', () => {
     describe('createType1Message', () => {
@@ -99,7 +104,9 @@ describe('core', () => {
                 keepalive: true,
             });
 
-            const type2Message = negotiateResponse.headers.get('www-authenticate');
+            const type2Message = extractNtlmMessageFromAuthenticateHeader(
+                negotiateResponse.headers.get('www-authenticate')
+            );
 
             if (!type2Message) {
                 throw new Error('Could not find type 2 message on response headers!');
