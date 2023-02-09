@@ -9,7 +9,7 @@ const PLACEHOLDER = '0.0.0-PLACEHOLDER';
 function checkAndReportErrors() {
     const tree = new FsTree(workspaceRoot, false);
 
-    const { version } = readJson(tree, 'lerna.json');
+    const { version } = readJson(tree, 'package.json');
 
     const config = readCachedProjectConfiguration(process.argv[2]);
 
