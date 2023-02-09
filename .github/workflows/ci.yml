@@ -19,9 +19,9 @@ jobs:
         yarn nx-cloud record -- yarn nx format:check
         yarn nx-cloud record -- yarn check-lockfile
       parallel-commands-on-agents: |
-        yarn nx affected --target=lint --parallel=3
-        yarn nx affected --target=test --parallel=3 --ci --code-coverage
-        yarn nx affected --target=build,check-dependencies  --parallel=3
+        yarn nx affected --target=lint --exclude=workspace --parallel=3
+        yarn nx affected --target=test --exclude=workspace --parallel=3 --ci --code-coverage
+        yarn nx affected --target=build,check-dependencies --exclude=workspace --parallel=3
 
   agents:
     name: Nx Cloud - Agents

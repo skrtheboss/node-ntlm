@@ -71,6 +71,6 @@ jobs:
               run: yarn install --frozen-lockfile
 
             - name: Rune tests
-              run: yarn nx-cloud record -- yarn nx affected --target=test --parallel=3 --ci --code-coverage
+              run: yarn nx-cloud record -- yarn nx affected --target=test --exclude=workspace --parallel=3 --ci --code-coverage
 
 
