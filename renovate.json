@@ -12,7 +12,7 @@
     ],
     "assigneesFromCodeOwners": true,
     "commitMessageAction": "bump",
-    "commitMessageExtra": "from {{currentVersion}} to {{#if isMajor}}v{{{newMajor}}}{{else}}{{#if isSingleVersion}}v{{{toVersion}}}{{else}}{{{newValue}}}{{/if}}{{/if}}",
+    "commitMessageExtra": "from {{currentVersion}} to {{#if isMajor}}v{{{newMajor}}}{{else}}{{#if isSingleVersion}}v{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}{{/if}}",
     "commitMessageTopic": "{{depName}}",
     "dependencyDashboard": true,
     "postUpdateOptions": ["yarnDedupeFewer"],
@@ -24,17 +24,17 @@
     "timezone": "Europe/Rome",
     "packageRules": [
         {
-            "description": "Require dashboard approval for major updates",
+            "description": ["Require dashboard approval for major updates"],
             "matchUpdateTypes": ["major"],
             "dependencyDashboardApproval": true
         },
         {
-            "description": "Five days stability period for npm packages",
+            "description": ["Five days stability period for npm packages"],
             "matchDatasources": ["npm"],
             "stabilityDays": 5
         },
         {
-            "description": "Require approval for @nrwl packages",
+            "description": ["Require approval for @nrwl packages"],
             "groupName": "Nrwl Nx",
             "matchDatasources": ["npm"],
             "matchPackageNames": ["nx"],
@@ -42,14 +42,14 @@
             "dependencyDashboardApproval": true
         },
         {
-            "description": "Group prettier packages",
+            "description": ["Group prettier packages"],
             "groupName": "prettier packages",
             "matchDatasources": ["npm"],
             "matchPackageNames": ["prettier"],
             "matchPackagePatterns": ["^@prettier\\/", "^prettier-plugin-"]
         },
         {
-            "description": "v prefix workaround for action updates",
+            "description": ["v prefix workaround for action updates"],
             "matchDepTypes": ["action"],
             "extractVersion": "^(?<version>v\\d+\\.\\d+\\.\\d+)$",
             "versioning": "regex:^v(?<major>\\d+)(\\.(?<minor>\\d+)\\.(?<patch>\\d+))?$"
