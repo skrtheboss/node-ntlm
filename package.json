@@ -29,8 +29,8 @@
         "tslib": "2.5.0"
     },
     "devDependencies": {
-        "@commitlint/cli": "17.4.3",
-        "@commitlint/config-angular": "17.4.3",
+        "@commitlint/cli": "17.4.4",
+        "@commitlint/config-angular": "17.4.4",
         "@jscutlery/semver": "^2.30.0",
         "@nrwl/devkit": "15.6.3",
         "@nrwl/eslint-plugin-nx": "15.6.3",
